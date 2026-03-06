@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Feedback & Complaint System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="screen active">
+        <div class="container">
+            <div class="auth-wrapper">
+                <div class="hero-panel">
+                    <div>
+                        <span class="hero-eyebrow">Campus Support Suite</span>
+                        <h1>Student Feedback & Complaint Management System</h1>
+                        <p>Log issues, share kudos, and keep every conversation transparent between students and administrators.</p>
+                    </div>
+                    <div class="hero-metrics">
+                        <div class="metric-card">
+                            <h3>24/7</h3>
+                            <p>Digital Desk</p>
+                        </div>
+                        <div class="metric-card">
+                            <h3>120+</h3>
+                            <p>Resolved Weekly</p>
+                        </div>
+                        <div class="metric-card">
+                            <h3>4.9★</h3>
+                            <p>Feedback Score</p>
+                        </div>
+                    </div>
+                    <div class="hero-cta">
+                        <button type="button" class="btn-primary" onclick="navigateToRegister()">Start Registration</button>
+                        <button type="button" class="btn-ghost" onclick="prefillAdminLogin()">
+                            <i class="fas fa-crown"></i> Admin Login
+                        </button>
+                    </div>
+                </div>
+                <div class="card login-card">
+                    <div class="logo-section">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h1>Student Portal</h1>
+                        <p>Feedback & Complaint Management System</p>
+                    </div>
+                    <form id="loginForm">
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="username" placeholder="Email or Username" required>
+                        </div>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" placeholder="Password" required>
+                        </div>
+                        <div class="role-selector">
+                            <label class="radio-container">
+                                <input type="radio" name="role" value="student" checked> Student
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="radio-container">
+                                <input type="radio" name="role" value="admin"> Admin
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn-primary">Login</button>
+                    </form>
+                    <div class="auth-switch">
+                        <span>New here?</span>
+                        <button type="button" class="link-btn" onclick="navigateToRegister()">Create an account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Screen -->
+    <div id="registerScreen" class="screen">
+        <div class="container">
+            <div class="card register-card">
+                <div class="register-header">
+                    <span class="hero-eyebrow">Create Account</span>
+                    <h2>Register for Feedback & Complaint Access</h2>
+                    <p>Sign up as a student or admin to stay informed about every submission and resolution.</p>
+                </div>
+                <form id="registerForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="regName">Full Name</label>
+                            <input type="text" id="regName" placeholder="Jane Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regEmail">Institutional Email</label>
+                            <input type="email" id="regEmail" placeholder="name@college.edu" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regDepartment">Department</label>
+                            <select id="regDepartment" required>
+                                <option value="">Select department</option>
+                                <option value="Computer Science">Computer Science</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Mechanical">Mechanical</option>
+                                <option value="Civil">Civil</option>
+                                <option value="Management">Management</option>
+                                <option value="Administration">Administration</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Registering As</label>
+                            <div class="role-selector compact">
+                                <label class="radio-container">
+                                    <input type="radio" name="regRole" value="student" checked> Student
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="regRole" value="admin"> Admin
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="regPassword">Password</label>
+                            <input type="password" id="regPassword" placeholder="Create a password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regConfirmPassword">Confirm Password</label>
+                            <input type="password" id="regConfirmPassword" placeholder="Re-enter password" required>
+                        </div>
+                    </div>
+                    <div class="policy-text">
+                        <p>By registering, you agree to our campus communication policy and consent to updates about your cases.</p>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="returnToLogin()">Back to Login</button>
+                        <button type="submit" class="btn-primary">Create Account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Dashboard -->
+    <div id="studentDashboard" class="screen">
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Student Dashboard</span>
+                </div>
+                <div class="nav-user">
+                    <span id="studentNameDisplay">John Doe</span>
+                    <button onclick="logout()" class="btn-logout"><i class="fas fa-sign-out-alt"></i></button>
+                </div>
+            </nav>
+            
+            <div class="dashboard-content">
+                <div class="welcome-section">
+                    <h2>Welcome back, <span id="studentName">John</span>!</h2>
+                    <p>How can we help you today?</p>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="action-card" onclick="showFeedbackForm()">
+                        <div class="card-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Give Feedback</h3>
+                        <p>Share your thoughts and suggestions</p>
+                        <span class="card-link">Provide Feedback →</span>
+                    </div>
+
+                    <div class="action-card" onclick="showComplaintForm()">
+                        <div class="card-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3>Add Complaint</h3>
+                        <p>Report an issue or concern</p>
+                        <span class="card-link">Submit Complaint →</span>
+                    </div>
+                </div>
+
+                <div class="recent-section">
+                    <h3>Recent Activities</h3>
+                    <div class="activity-list" id="studentActivityList">
+                        <!-- Activities will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="screen">
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <i class="fas fa-crown"></i>
+                    <span>Admin Dashboard</span>
+                </div>
+                <div class="nav-user">
+                    <span>Admin</span>
+                    <button onclick="logout()" class="btn-logout"><i class="fas fa-sign-out-alt"></i></button>
+                </div>
+            </nav>
+
+            <div class="dashboard-content">
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-icon pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="pendingCount">0</h3>
+                            <p>Pending</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon resolved">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="resolvedCount">0</h3>
+                            <p>Resolved</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon total">
+                            <i class="fas fa-list"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalCount">0</h3>
+                            <p>Total</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="complaints-section">
+                    <div class="section-header">
+                        <h3>Complaints List</h3>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="pending">Pending</button>
+                            <button class="filter-btn" data-filter="resolved">Resolved</button>
+                        </div>
+                    </div>
+                    <div class="complaints-list" id="complaintsList">
+                        <!-- Complaints will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Form Modal -->
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Give Feedback</h2>
+                <span class="close" onclick="closeModal('feedbackModal')">&times;</span>
+            </div>
+            <form id="feedbackForm" onsubmit="submitFeedback(event)">
+                <div class="form-group">
+                    <label>Rating</label>
+                    <div class="rating-container">
+                        <div class="stars">
+                            <i class="far fa-star" onclick="setRating(1)"></i>
+                            <i class="far fa-star" onclick="setRating(2)"></i>
+                            <i class="far fa-star" onclick="setRating(3)"></i>
+                            <i class="far fa-star" onclick="setRating(4)"></i>
+                            <i class="far fa-star" onclick="setRating(5)"></i>
+                        </div>
+                        <input type="hidden" id="rating" value="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="comments">Comments</label>
+                    <textarea id="comments" rows="4" placeholder="Please share your feedback..."></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeModal('feedbackModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Submit Feedback</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Complaint Form Modal -->
+    <div id="complaintModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Complaint</h2>
+                <span class="close" onclick="closeModal('complaintModal')">&times;</span>
+            </div>
+            <form id="complaintForm" onsubmit="submitComplaint(event)">
+                <div class="form-group">
+                    <label for="complaintTitle">Title</label>
+                    <input type="text" id="complaintTitle" placeholder="Brief title of your complaint" required>
+                </div>
+                <div class="form-group">
+                    <label for="complaintCategory">Category</label>
+                    <select id="complaintCategory">
+                        <option value="academic">Academic</option>
+                        <option value="facility">Facility</option>
+                        <option value="administrative">Administrative</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="complaintDescription">Description</label>
+                    <textarea id="complaintDescription" rows="4" placeholder="Describe your complaint in detail..." required></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeModal('complaintModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Submit Complaint</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="java.js"></script>
+</body>
+</html>
